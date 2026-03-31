@@ -6,7 +6,7 @@
   <title>Sistema de Hiperfoco - Concurso</title>
   <style>
     :root {
-      --bg: #0f1115;
+      --bg: #0b0d12;
       --panel: #171a21;
       --panel-2: #1f2430;
       --text: #f5f7fb;
@@ -28,12 +28,31 @@
     }
 
     .container {
-      max-width: 1300px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 24px;
     }
 
-    h1, h2, h3 { margin-top: 0; }
+    h1,h2,h3,p { margin-top: 0; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
 
     .tabs {
       display: flex;
@@ -42,9 +61,20 @@
       flex-wrap: wrap;
     }
 
+    button {
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    button:hover { filter: brightness(1.08); }
+
     .tab-btn {
       width: auto;
       min-width: 170px;
+      border-radius: 12px;
+      padding: 12px 16px;
       background: #232937;
       border: 1px solid var(--border);
       color: var(--text);
@@ -60,56 +90,32 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.15fr .95fr;
       gap: 20px;
     }
 
     .grid-timer {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.05fr .95fr;
       gap: 20px;
     }
 
     .card {
-      background: rgba(23, 26, 33, 0.95);
+      background: rgba(23, 26, 33, 0.96);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
     }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .stats {
+    .stats, .stats-3 {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-top: 16px;
     }
 
-    .stats-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
+    .stats { grid-template-columns: repeat(4, 1fr); }
+    .stats-3 { grid-template-columns: repeat(3, 1fr); }
 
     .stat {
       background: var(--panel-2);
@@ -118,49 +124,35 @@
       padding: 14px;
     }
 
-    .stat .label {
+    .label {
       color: var(--muted);
       font-size: 13px;
       margin-bottom: 8px;
     }
 
-    .stat .value {
+    .value {
       font-size: 28px;
       font-weight: bold;
     }
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    input, textarea, select, button {
-      width: 100%;
+    .warning, .ok {
+      border-left: 4px solid;
+      padding: 12px;
       border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #0f141d;
-      color: var(--text);
-      padding: 12px 14px;
-      font-size: 15px;
+      margin-bottom: 16px;
     }
 
-    textarea { min-height: 90px; resize: vertical; }
-
-    button {
-      background: var(--accent);
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: .2s;
+    .warning {
+      border-color: var(--yellow);
+      background: rgba(245,158,11,.08);
+      color: #ffe2ad;
     }
 
-    button:hover { filter: brightness(1.08); }
-
-    .button-secondary { background: #2a3140; }
-    .button-danger { background: var(--red); }
-    .button-purple { background: var(--purple); }
+    .ok {
+      border-color: var(--green);
+      background: rgba(41,179,107,.08);
+      color: #b7f3d4;
+    }
 
     .row {
       display: grid;
@@ -185,9 +177,49 @@
       font-weight: bold;
     }
 
-    .muted {
+    .muted, .small-note {
       color: var(--muted);
       font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input, textarea, select, .btn {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0f141d;
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 15px;
+    }
+
+    textarea { min-height: 90px; resize: vertical; }
+
+    .btn {
+      background: var(--accent);
+      text-align: center;
+    }
+
+    .button-secondary { background: #2a3140; }
+    .button-danger { background: var(--red); }
+    .button-purple { background: var(--purple); }
+
+    .footer-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .footer-actions .btn {
+      width: auto;
+      min-width: 170px;
     }
 
     .log-list {
@@ -231,36 +263,6 @@
     .yellow { background: rgba(245,158,11,.14); color: #ffd18a; }
     .purple { background: rgba(139,92,246,.12); color: #cfbeff; }
 
-    .warning {
-      border-left: 4px solid var(--yellow);
-      padding: 12px;
-      border-radius: 12px;
-      background: rgba(245,158,11,.08);
-      color: #ffe2ad;
-      margin-bottom: 16px;
-    }
-
-    .ok {
-      border-left: 4px solid var(--green);
-      padding: 12px;
-      border-radius: 12px;
-      background: rgba(41,179,107,.08);
-      color: #b7f3d4;
-      margin-bottom: 16px;
-    }
-
-    .footer-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .footer-actions button {
-      width: auto;
-      min-width: 170px;
-    }
-
     .timer-card {
       background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
       border: 1px solid var(--border);
@@ -301,19 +303,13 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--purple));
-      transition: width .3s ease;
+      transition: width .2s ease;
     }
 
     .timer-controls {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-    }
-
-    .small-note {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 10px;
     }
 
     .month-summary {
@@ -346,10 +342,7 @@
       .grid, .grid-timer, .stats, .stats-3, .row, .subjects, .month-summary, .timer-controls {
         grid-template-columns: 1fr;
       }
-
-      .timer-display {
-        font-size: 48px;
-      }
+      .timer-display { font-size: 46px; }
     }
   </style>
 </head>
@@ -358,44 +351,32 @@
     <div class="topbar">
       <div>
         <h1>Sistema de Hiperfoco - Concurso</h1>
-        <div class="badge">Dashboard + cronômetro por matéria + controle mensal</div>
+        <div class="badge">Dashboard + cronômetro travado no plano do dia</div>
       </div>
       <div class="badge" id="todayLabel"></div>
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
-      <button class="tab-btn" data-tab="cronometro">Cronômetro e mês</button>
+      <button class="tab-btn active" data-tab="dashboard" type="button">Dashboard</button>
+      <button class="tab-btn" data-tab="cronometro" type="button">Cronômetro e mês</button>
     </div>
 
     <div id="dashboard" class="tab-view active">
       <div class="warning">
-        <strong>Ajuste importante:</strong> 90 pontos em 90 dias corridos de segunda a sexta não fecha direito na prática. Então o sistema trabalha com <strong>90 sessões válidas</strong> e te obriga a repetir o ciclo se não bater a meta.
+        <strong>Ajuste importante:</strong> o sistema usa <strong>90 sessões válidas</strong>. Se você não bater a meta, repete o ciclo.
       </div>
 
       <div class="stats">
-        <div class="stat">
-          <div class="label">Pontos atuais</div>
-          <div class="value" id="pointsValue">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Faltas / perdas</div>
-          <div class="value" id="missesValue">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Sessões registradas</div>
-          <div class="value" id="sessionsValue">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Meta final</div>
-          <div class="value">90</div>
-        </div>
+        <div class="stat"><div class="label">Pontos atuais</div><div class="value" id="pointsValue">0</div></div>
+        <div class="stat"><div class="label">Faltas / perdas</div><div class="value" id="missesValue">0</div></div>
+        <div class="stat"><div class="label">Sessões registradas</div><div class="value" id="sessionsValue">0</div></div>
+        <div class="stat"><div class="label">Meta final</div><div class="value">90</div></div>
       </div>
 
       <div class="grid" style="margin-top:20px;">
         <div class="card">
           <h2>Plano do dia</h2>
-          <p class="muted">Clique para sortear 2 matérias. O sistema evita repetir a mesma matéria no mesmo dia.</p>
+          <p class="muted">As matérias do cronômetro só mudam quando você clicar em <strong>Sortear matérias de hoje</strong>.</p>
 
           <div class="subjects">
             <div class="subject-box" id="subject1">—</div>
@@ -403,8 +384,8 @@
           </div>
 
           <div class="footer-actions">
-            <button id="drawBtn">Sortear matérias de hoje</button>
-            <button class="button-secondary" id="reuseBtn">Usar último sorteio</button>
+            <button class="btn" id="drawBtn" type="button">Sortear matérias de hoje</button>
+            <button class="btn button-secondary" id="reuseBtn" type="button">Usar último sorteio</button>
           </div>
 
           <hr style="border-color:#222a38; margin:20px 0;">
@@ -437,7 +418,7 @@
 
           <div style="margin-top:12px;">
             <label for="contentStudied">Conteúdo estudado</label>
-            <textarea id="contentStudied" placeholder="Ex.: Classes gramaticais, poderes da Administração, atos administrativos..."></textarea>
+            <textarea id="contentStudied" placeholder="Ex.: classes gramaticais, atos administrativos..."></textarea>
           </div>
 
           <div style="margin-top:12px;">
@@ -464,7 +445,7 @@
           </div>
 
           <div style="margin-top:14px;">
-            <button id="saveBtn">Salvar registro</button>
+            <button class="btn" id="saveBtn" type="button">Salvar registro</button>
           </div>
 
           <div id="statusBox" style="margin-top:16px;"></div>
@@ -480,8 +461,8 @@
           <div class="log-list" id="historyList"></div>
 
           <div class="footer-actions">
-            <button class="button-secondary" id="exportBtn">Exportar backup</button>
-            <button class="button-danger" id="resetBtn">Resetar tudo</button>
+            <button class="btn button-secondary" id="exportBtn" type="button">Exportar backup</button>
+            <button class="btn button-danger" id="resetBtn" type="button">Resetar tudo</button>
           </div>
         </div>
       </div>
@@ -491,13 +472,13 @@
       <div class="grid-timer">
         <div class="card">
           <h2>Cronômetro por matéria</h2>
-          <p class="muted">Cada matéria dura 1h30: 1h de estudo + 30min de questões/simulados. Com pausa e alerta sonoro.</p>
+          <p class="muted">1h de teoria + 30min de questões. O cronômetro sempre usa a matéria exata do plano do dia.</p>
 
           <div class="row">
             <div>
               <label>Matéria do plano do dia</label>
-              <div class="subject-box" id="timerSubjectBox">Nenhuma matéria sorteada ainda</div>
-              <div class="small-note">O cronômetro sempre usa a matéria exata do plano do dia. Ela só muda ao clicar em <strong>Sortear matérias de hoje</strong>.</div>
+              <div class="subject-box" id="timerPlanSubject">Nenhuma matéria sorteada ainda</div>
+              <div class="small-note">Concluiu a primeira? O sistema passa para a segunda automaticamente.</div>
             </div>
             <div>
               <label for="timerMode">Modo</label>
@@ -510,18 +491,16 @@
           </div>
 
           <div class="timer-card" style="margin-top:16px;">
-            <div class="timer-subject" id="timerSubjectLabel">Nenhuma matéria selecionada</div>
+            <div class="timer-subject" id="timerSubjectLabel">Nenhuma matéria sorteada ainda</div>
             <div class="timer-phase" id="timerPhaseLabel">Aguardando início</div>
-            <div class="progress-wrap">
-              <div class="progress-bar" id="timerProgressBar"></div>
-            </div>
+            <div class="progress-wrap"><div class="progress-bar" id="timerProgressBar"></div></div>
             <div class="timer-display" id="timerDisplay">01:30:00</div>
             <div class="timer-controls">
-              <button id="startTimerBtn">Iniciar</button>
-              <button class="button-secondary" id="pauseTimerBtn">Pausar</button>
-              <button class="button-danger" id="resetTimerBtn">Resetar</button>
+              <button class="btn" id="startTimerBtn" type="button">Iniciar</button>
+              <button class="btn button-secondary" id="pauseTimerBtn" type="button">Pausar</button>
+              <button class="btn button-danger" id="resetTimerBtn" type="button">Resetar</button>
             </div>
-            <div class="small-note">Quando terminar uma fase, o sistema toca um sino digital para te alertar.</div>
+            <div class="small-note">Toca um sino digital ao mudar de fase e ao concluir.</div>
           </div>
         </div>
 
@@ -534,34 +513,19 @@
             </div>
             <div>
               <label>&nbsp;</label>
-              <button class="button-purple" id="refreshMonthBtn">Atualizar resumo</button>
+              <button class="btn button-purple" id="refreshMonthBtn" type="button">Atualizar resumo</button>
             </div>
           </div>
 
           <div class="month-summary">
-            <div class="stat">
-              <div class="label">Matérias concluídas no mês</div>
-              <div class="value" id="monthCompletedSubjects">0</div>
-            </div>
-            <div class="stat">
-              <div class="label">Tempo estudado no mês</div>
-              <div class="value" id="monthStudyTime">0h</div>
-            </div>
+            <div class="stat"><div class="label">Matérias concluídas no mês</div><div class="value" id="monthCompletedSubjects">0</div></div>
+            <div class="stat"><div class="label">Tempo estudado no mês</div><div class="value" id="monthStudyTime">0h</div></div>
           </div>
 
           <div class="stats-3">
-            <div class="stat">
-              <div class="label">Tempo em teoria</div>
-              <div class="value" id="monthTheoryTime">0h</div>
-            </div>
-            <div class="stat">
-              <div class="label">Tempo em questões</div>
-              <div class="value" id="monthQuestionTime">0h</div>
-            </div>
-            <div class="stat">
-              <div class="label">Sessões do cronômetro</div>
-              <div class="value" id="monthTimerSessions">0</div>
-            </div>
+            <div class="stat"><div class="label">Tempo em teoria</div><div class="value" id="monthTheoryTime">0h</div></div>
+            <div class="stat"><div class="label">Tempo em questões</div><div class="value" id="monthQuestionTime">0h</div></div>
+            <div class="stat"><div class="label">Sessões do cronômetro</div><div class="value" id="monthTimerSessions">0</div></div>
           </div>
 
           <div class="month-subjects" id="monthSubjectsList"></div>
@@ -571,22 +535,29 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'hiperfocoConcursoSystem_v1';
+    const STORAGE_KEY = 'hiperfocoConcursoSystem_v2';
 
     const defaultData = {
-      subjects: [
-        'Português',
-        'Matemática',
-        'Informática',
-        'Direito Administrativo',
-        'Direito Constitucional',
-        'Administração'
-      ],
+      subjects: ['Português', 'Matemática', 'Informática', 'Direito Administrativo', 'Direito Constitucional', 'Administração'],
       lastDraw: [],
       currentTimerIndex: 0,
       logs: {},
       timerLogs: []
     };
+
+    function deepClone(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+
+    function loadData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return deepClone(defaultData);
+      try {
+        return { ...deepClone(defaultData), ...JSON.parse(raw) };
+      } catch {
+        return deepClone(defaultData);
+      }
+    }
 
     const data = loadData();
 
@@ -611,7 +582,7 @@
     const analysisBox = document.getElementById('analysisBox');
     const statusBox = document.getElementById('statusBox');
 
-    const timerSubjectBox = document.getElementById('timerSubjectBox');
+    const timerPlanSubject = document.getElementById('timerPlanSubject');
     const timerMode = document.getElementById('timerMode');
     const timerSubjectLabel = document.getElementById('timerSubjectLabel');
     const timerPhaseLabel = document.getElementById('timerPhaseLabel');
@@ -633,7 +604,6 @@
       mode: 'full',
       phase: 'study',
       phaseLabel: 'Teoria',
-      phaseTotalSeconds: 3600,
       remainingSeconds: 5400,
       totalSeconds: 5400,
       startedAt: null,
@@ -645,11 +615,10 @@
     studyDate.value = todayISO;
     monthSelect.value = todayISO.slice(0, 7);
 
-    renderLastDraw();
+    setupTabs();
     renderAll();
     renderMonthSummary();
     updateTimerUI();
-    setupTabs();
 
     document.getElementById('drawBtn').addEventListener('click', drawSubjects);
     document.getElementById('reuseBtn').addEventListener('click', useLastDraw);
@@ -660,25 +629,12 @@
     document.getElementById('pauseTimerBtn').addEventListener('click', pauseTimer);
     document.getElementById('resetTimerBtn').addEventListener('click', resetTimer);
     document.getElementById('refreshMonthBtn').addEventListener('click', renderMonthSummary);
-    timerMode.addEventListener('change', updateTimerUI);
-
-    function loadData() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return structuredClone(defaultData);
-      try {
-        return { ...structuredClone(defaultData), ...JSON.parse(raw) };
-      } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-        return structuredClone(defaultData);
-      }
-    }
+    timerMode.addEventListener('change', () => {
+      if (!timerState.running && !timerState.paused) updateTimerUI();
+    });
 
     function saveData() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    }
-
-    function structuredClone(obj) {
-      return JSON.parse(JSON.stringify(obj));
     }
 
     function toISODate(date) {
@@ -694,26 +650,16 @@
     }
 
     function getDayName(date) {
-      const names = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-      return names[date.getDay()];
+      return ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'][date.getDay()];
     }
 
-    function isSunday(date) {
-      return date.getDay() === 0;
-    }
-
-    function isSaturday(date) {
-      return date.getDay() === 6;
-    }
-
-    function isWeekday(date) {
-      return date.getDay() >= 1 && date.getDay() <= 5;
-    }
+    function isSunday(date) { return date.getDay() === 0; }
+    function isSaturday(date) { return date.getDay() === 6; }
+    function isWeekday(date) { return date.getDay() >= 1 && date.getDay() <= 5; }
 
     function setupTabs() {
       const buttons = document.querySelectorAll('.tab-btn');
       const views = document.querySelectorAll('.tab-view');
-
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           buttons.forEach(b => b.classList.remove('active'));
@@ -724,30 +670,6 @@
       });
     }
 
-    function drawSubjects() {
-      const pool = [...data.subjects];
-      shuffle(pool);
-      const draw = [pool[0], pool[1]];
-      data.lastDraw = draw;
-      saveData();
-      renderLastDrafunction drawSubjects() {
-      const pool = [...data.subjects];
-      shuffle(pool);
-      const draw = [pool[0], pool[1]];
-      data.lastDraw = drfunction useLastDraw() {
-      if (!data.lastDraw || data.lastDraw.length < 2) {
-        showStatus('Ainda não existe sorteio salvo.', 'warning');
-        return;
-      }
-      subjectInput1.value = data.lastDraw[0];
-      subjectInput2.value = data.lastDraw[1];
-      renderLastDraw();
-      showStatus('Último sorteio carregado no formulário. O cronômetro continua preso ao plano do dia atual.', 'ok');
-    }raw[1];
-      renderLastDraw();
-      showStatus('Último sorteio carregado no formulário.', 'ok');
-    }
-
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -755,54 +677,61 @@
       }
     }
 
+    function drawSubjects() {
+      const pool = [...data.subjects];
+      shuffle(pool);
+      data.lastDraw = [pool[0], pool[1]];
+      data.currentTimerIndex = 0;
+      saveData();
+      resetTimer(false);
+      renderLastDraw();
+      subjectInput1.value = data.lastDraw[0];
+      subjectInput2.value = data.lastDraw[1];
+      showStatus('Matérias sorteadas com sucesso. Agora o cronômetro está preso a esse plano do dia.', 'ok');
+    }
+
+    function useLastDraw() {
+      if (!data.lastDraw || data.lastDraw.length < 2) {
+        showStatus('Ainda não existe sorteio salvo.', 'warning');
+        return;
+      }
+      subjectInput1.value = data.lastDraw[0];
+      subjectInput2.value = data.lastDraw[1];
+      renderLastDraw();
+      showStatus('Último sorteio carregado no formulário. O cronômetro continua com o plano já definido.', 'ok');
+    }
+
     function renderLastDraw() {
       subject1.textContent = data.lastDraw[0] || '—';
       subject2.textContent = data.lastDraw[1] || '—';
-
-      const currentIndex = Number(data.currentTimerIndex || 0);
-      const currentSubject = data.lastDraw[currentIndex] || 'Nenhuma matéria sorteada ainda';
-      timerSubjectBox.textContent = currentSubject;
+      const currentSubject = data.lastDraw[data.currentTimerIndex] || 'Nenhuma matéria sorteada ainda';
+      timerPlanSubject.textContent = currentSubject;
     }
 
     function saveLog() {
       const iso = studyDate.value;
-      if (!iso) {
-        showStatus('Escolha uma data.', 'warning');
-        return;
-      }
+      if (!iso) return showStatus('Escolha uma data.', 'warning');
 
       const date = new Date(`${iso}T12:00:00`);
-      if (isSunday(date)) {
-        showStatus('Domingo não entra no sistema de pontuação.', 'warning');
-        return;
-      }
+      if (isSunday(date)) return showStatus('Domingo fica fora do sistema.', 'warning');
 
       const s1 = subjectInput1.value.trim();
       const s2 = subjectInput2.value.trim();
-      const content = contentStudied.value.trim();
-      const understood = understoodText.value.trim();
-      const level = understoodLevel.value;
-      const activity = activityDone.value;
-      const type = studyType.value;
-
-      if (!s1 || !s2) {
-        showStatus('Preencha as 2 matérias do dia.', 'warning');
-        return;
-      }
+      if (!s1 || !s2) return showStatus('Preencha as 2 matérias do dia.', 'warning');
 
       let point = 0;
-      if (isWeekday(date) && activity === 'sim') point = 1;
+      if (isWeekday(date) && activityDone.value === 'sim') point = 1;
       if (isSaturday(date)) point = 0;
 
       data.logs[iso] = {
         date: iso,
         dayName: getDayName(date),
-        studyType: type,
+        studyType: studyType.value,
         subjects: [s1, s2],
-        content,
-        understoodText: understood,
-        understoodLevel: level,
-        activityDone: activity,
+        content: contentStudied.value.trim(),
+        understoodText: understoodText.value.trim(),
+        understoodLevel: understoodLevel.value,
+        activityDone: activityDone.value,
         point,
         savedAt: new Date().toISOString()
       };
@@ -821,20 +750,16 @@
       for (const entry of entries) {
         const date = new Date(`${entry.date}T12:00:00`);
         if (isSunday(date)) continue;
-
         sessions += 1;
         points += Number(entry.point || 0);
-
-        if (isWeekday(date) && Number(entry.point || 0) === 0) {
-          misses += 1;
-        }
+        if (isWeekday(date) && Number(entry.point || 0) === 0) misses += 1;
       }
 
-      const balance = points - misses;
-      return { points, misses, sessions, balance, entries };
+      return { points, misses, sessions, balance: points - misses, entries };
     }
 
     function renderAll() {
+      renderLastDraw();
       const stats = calculateStats();
       pointsValue.textContent = stats.points;
       missesValue.textContent = stats.misses;
@@ -850,18 +775,15 @@
       }
 
       const reversed = [...entries].reverse();
-
       historyList.innerHTML = reversed.map(entry => {
         const levelMap = {
           sim: '<span class="pill green">Entendeu</span>',
           mais_ou_menos: '<span class="pill yellow">Mais ou menos</span>',
           nao: '<span class="pill red">Não entendeu</span>'
         };
-
         const activityMap = entry.activityDone === 'sim'
           ? '<span class="pill green">Fez questões/simulado</span>'
           : '<span class="pill red">Não fez questões</span>';
-
         const pointMap = Number(entry.point) === 1
           ? '<span class="pill green">+1 ponto</span>'
           : '<span class="pill yellow">0 ponto</span>';
@@ -886,63 +808,32 @@
 
     function renderAnalysis(stats) {
       const remaining = Math.max(90 - stats.points, 0);
-      const approved = stats.points >= 90;
-      const balanceClass = stats.balance >= 0 ? 'ok' : 'warning';
-
-      let recommendation = '';
-      if (approved) {
-        recommendation = `
-          <div class="ok">
-            <strong>Meta concluída.</strong><br>
-            Você já alcançou os 90 pontos. Agora o foco é manter a consistência e revisar os pontos fracos.
-          </div>`;
-      } else {
-        recommendation = `
-          <div class="warning">
-            <strong>Meta ainda não concluída.</strong><br>
-            Faltam <strong>${remaining}</strong> pontos. Se fechar o ciclo sem bater 90, o sistema entende que você precisa refazer o ciclo de estudos.
-          </div>`;
-      }
-
       analysisBox.innerHTML = `
-        ${recommendation}
-        <div class="${balanceClass}">
+        ${stats.points >= 90
+          ? `<div class="ok"><strong>Meta concluída.</strong><br>Você bateu os 90 pontos.</div>`
+          : `<div class="warning"><strong>Meta ainda não concluída.</strong><br>Faltam <strong>${remaining}</strong> pontos.</div>`}
+        <div class="${stats.balance >= 0 ? 'ok' : 'warning'}">
           <strong>Saldo real:</strong> ${stats.balance}<br>
-          Fórmula usada: <strong>pontos ganhos - dias úteis registrados sem atividade</strong>.
+          Fórmula: <strong>pontos ganhos - dias úteis registrados sem atividade</strong>.
         </div>
-        <p><strong>Como o sistema está lendo seu desempenho:</strong></p>
+        <p><strong>Leitura do sistema:</strong></p>
         <ul>
-          <li>Segunda a sexta com questões/simulado/PDF feito = <strong>+1 ponto</strong>.</li>
-          <li>Segunda a sexta estudado sem atividade = <strong>0 ponto</strong> e conta como falta técnica.</li>
-          <li>Sábado = revisão básica, <strong>não pontua</strong>.</li>
+          <li>Segunda a sexta com questões/simulado/PDF = <strong>+1 ponto</strong>.</li>
+          <li>Segunda a sexta sem atividade = <strong>0 ponto</strong> e conta como falha técnica.</li>
+          <li>Sábado = revisão, <strong>não pontua</strong>.</li>
           <li>Domingo = fora do sistema.</li>
-          <li>Se terminar o ciclo abaixo de 90 pontos, você <strong>repete o ciclo</strong>.</li>
         </ul>
       `;
     }
 
-    function escapeHTML(text) {
-      return String(text)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
     function showStatus(message, type) {
-      const cls = type === 'ok' ? 'ok' : 'warning';
-      statusBox.innerHTML = `<div class="${cls}">${message}</div>`;
+      statusBox.innerHTML = `<div class="${type === 'ok' ? 'ok' : 'warning'}">${message}</div>`;
     }
 
     function getModeConfig(mode) {
-      if (mode === 'study') {
-        return { totalSeconds: 3600, phase: 'study', phaseLabel: 'Teoria', phaseTotalSeconds: 3600 };
-      }
-      if (mode === 'questions') {
-        return { totalSeconds: 1800, phase: 'questions', phaseLabel: 'Questões / Simulado', phaseTotalSeconds: 1800 };
-      }
-      return { totalSeconds: 5400, phase: 'study', phaseLabel: 'Teoria', phaseTotalSeconds: 3600 };
+      if (mode === 'study') return { totalSeconds: 3600, phase: 'study', phaseLabel: 'Teoria' };
+      if (mode === 'questions') return { totalSeconds: 1800, phase: 'questions', phaseLabel: 'Questões / Simulado' };
+      return { totalSeconds: 5400, phase: 'study', phaseLabel: 'Teoria' };
     }
 
     function formatSeconds(seconds) {
@@ -954,22 +845,21 @@
     }
 
     function updateTimerUI() {
-      const currentIndex = Number(data.currentTimerIndex || 0);
-      const currentSubject = data.lastDraw[currentIndex] || '';
-      timerSubjectBox.textContent = currentSubject || 'Nenhuma matéria sorteada ainda';
+      const currentSubject = data.lastDraw[data.currentTimerIndex] || 'Nenhuma matéria sorteada ainda';
+      timerPlanSubject.textContent = currentSubject;
 
       if (!timerState.running && !timerState.paused) {
         const config = getModeConfig(timerMode.value);
-        timerDisplay.textContent = formatSeconds(config.totalSeconds);
-        timerSubjectLabel.textContent = currentSubject || 'Nenhuma matéria sorteada ainda';
+        timerSubjectLabel.textContent = currentSubject;
         timerPhaseLabel.textContent = `Aguardando início • ${config.phaseLabel}`;
+        timerDisplay.textContent = formatSeconds(config.totalSeconds);
         timerProgressBar.style.width = '0%';
         return;
       }
 
-      timerDisplay.textContent = formatSeconds(timerState.remainingSeconds);
-      timerSubjectLabel.textContent = timerState.subject || 'Nenhuma matéria sorteada ainda';
+      timerSubjectLabel.textContent = timerState.subject || currentSubject;
       timerPhaseLabel.textContent = `${timerState.phaseLabel}${timerState.paused ? ' • Pausado' : ''}`;
+      timerDisplay.textContent = formatSeconds(timerState.remainingSeconds);
       const progress = ((timerState.totalSeconds - timerState.remainingSeconds) / timerState.totalSeconds) * 100;
       timerProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
     }
@@ -978,11 +868,11 @@
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const now = ctx.currentTime;
-        [0, 0.22, 0.44].forEach((offset, index) => {
+        [0, 0.22, 0.44].forEach((offset, i) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(index === 1 ? 880 : 740, now + offset);
+          osc.frequency.setValueAtTime(i === 1 ? 880 : 740, now + offset);
           gain.gain.setValueAtTime(0.0001, now + offset);
           gain.gain.exponentialRampToValueAtTime(0.28, now + offset + 0.02);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.28);
@@ -991,19 +881,17 @@
           osc.start(now + offset);
           osc.stop(now + offset + 0.3);
         });
-      } catch (error) {
-        console.error('Erro ao tocar sino:', error);
+      } catch (e) {
+        console.error(e);
       }
     }
 
     function startTimer() {
       if (timerState.running) return;
 
-      const currentIndex = Number(data.currentTimerIndex || 0);
-      const currentSubject = data.lastDraw[currentIndex];
-
+      const currentSubject = data.lastDraw[data.currentTimerIndex];
       if (!currentSubject) {
-        showStatus('Primeiro clique em "Sortear matérias de hoje" para definir o plano e liberar o cronômetro.', 'warning');
+        showStatus('Primeiro clique em “Sortear matérias de hoje”.', 'warning');
         return;
       }
 
@@ -1016,7 +904,6 @@
           mode: timerMode.value,
           phase: config.phase,
           phaseLabel: config.phaseLabel,
-          phaseTotalSeconds: config.phaseTotalSeconds,
           remainingSeconds: config.totalSeconds,
           totalSeconds: config.totalSeconds,
           startedAt: new Date().toISOString(),
@@ -1028,34 +915,30 @@
         timerState.paused = false;
       }
 
-      runTimer();
+      clearInterval(timerInterval);
+      timerInterval = setInterval(tickTimer, 1000);
       updateTimerUI();
     }
 
-    function runTimer() {
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        if (!timerState.running) return;
+    function tickTimer() {
+      if (!timerState.running) return;
+      timerState.remainingSeconds -= 1;
 
-        timerState.remainingSeconds -= 1;
+      if (timerState.phase === 'study') timerState.accumulatedTheorySeconds += 1;
+      if (timerState.phase === 'questions') timerState.accumulatedQuestionSeconds += 1;
 
-        if (timerState.phase === 'study') timerState.accumulatedTheorySeconds += 1;
-        if (timerState.phase === 'questions') timerState.accumulatedQuestionSeconds += 1;
+      if (timerState.mode === 'full' && timerState.phase === 'study' && timerState.remainingSeconds === 1800) {
+        timerState.phase = 'questions';
+        timerState.phaseLabel = 'Questões / Simulado';
+        playBell();
+      }
 
-        if (timerState.mode === 'full' && timerState.phase === 'study' && timerState.remainingSeconds === 1800) {
-          timerState.phase = 'questions';
-          timerState.phaseLabel = 'Questões / Simulado';
-          timerState.phaseTotalSeconds = 1800;
-          playBell();
-        }
+      if (timerState.remainingSeconds <= 0) {
+        finalizeTimer();
+        return;
+      }
 
-        if (timerState.remainingSeconds <= 0) {
-          finalizeTimer();
-          return;
-        }
-
-        updateTimerUI();
-      }, 1000);
+      updateTimerUI();
     }
 
     function pauseTimer() {
@@ -1066,24 +949,24 @@
       updateTimerUI();
     }
 
-    function resetTimer() {
+    function resetTimer(refresh = true) {
       clearInterval(timerInterval);
       timerInterval = null;
+      const cfg = getModeConfig(timerMode.value);
       timerState = {
         running: false,
         paused: false,
         subject: '',
         mode: timerMode.value,
-        phase: 'study',
-        phaseLabel: 'Teoria',
-        phaseTotalSeconds: 3600,
-        remainingSeconds: getModeConfig(timerMode.value).totalSeconds,
-        totalSeconds: getModeConfig(timerMode.value).totalSeconds,
+        phase: cfg.phase,
+        phaseLabel: cfg.phaseLabel,
+        remainingSeconds: cfg.totalSeconds,
+        totalSeconds: cfg.totalSeconds,
         startedAt: null,
         accumulatedTheorySeconds: 0,
         accumulatedQuestionSeconds: 0
       };
-      updateTimerUI();
+      if (refresh) updateTimerUI();
     }
 
     function finalizeTimer() {
@@ -1103,31 +986,14 @@
         completed: true
       });
 
-      if ((data.lastDraw || []).length >= 2) {
-        const currentIndex = Number(data.currentTimerIndex || 0);
-        data.currentTimerIndex = currentIndex === 0 ? 1 : 1;
+      if (data.lastDraw.length >= 2 && data.currentTimerIndex === 0) {
+        data.currentTimerIndex = 1;
       }
 
       saveData();
       renderLastDraw();
       renderMonthSummary();
-
-      timerState = {
-        running: false,
-        paused: false,
-        subject: '',
-        mode: timerMode.value,
-        phase: 'study',
-        phaseLabel: 'Concluído',
-        phaseTotalSeconds: 3600,
-        remainingSeconds: 0,
-        totalSeconds: getModeConfig(timerMode.value).totalSeconds,
-        startedAt: null,
-        accumulatedTheorySeconds: 0,
-        accumulatedQuestionSeconds: 0
-      };
-
-      updateTimerUI();
+      resetTimer();
     }
 
     function renderMonthSummary() {
@@ -1142,9 +1008,7 @@
 
       const bySubject = {};
       monthLogs.forEach(item => {
-        if (!bySubject[item.subject]) {
-          bySubject[item.subject] = { count: 0, time: 0 };
-        }
+        if (!bySubject[item.subject]) bySubject[item.subject] = { count: 0, time: 0 };
         bySubject[item.subject].count += 1;
         bySubject[item.subject].time += Number(item.totalSeconds || 0);
       });
@@ -1178,11 +1042,13 @@
       return `${minutes}min`;
     }
 
-    function resetAll() {
-      const confirmed = confirm('Tem certeza que deseja apagar todo o sistema?');
-      if (!confirmed) return;
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
+    function escapeHTML(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
     }
 
     function exportBackup() {
@@ -1193,6 +1059,12 @@
       a.download = 'backup_hiperfoco_concurso.json';
       a.click();
       URL.revokeObjectURL(url);
+    }
+
+    function resetAll() {
+      if (!confirm('Tem certeza que deseja apagar todo o sistema?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
     }
   </script>
 </body>
